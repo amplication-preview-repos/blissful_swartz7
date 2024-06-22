@@ -1,0 +1,54 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Sender {
+  createdAt   DateTime @default(now())
+  id          String   @id @default(cuid())
+  name        String?
+  phoneNumber String?
+  updatedAt   DateTime @updatedAt
+}
+
+model Rider {
+  createdAt   DateTime @default(now())
+  fee         Float?
+  id          String   @id @default(cuid())
+  name        String?
+  phoneNumber String?
+  updatedAt   DateTime @updatedAt
+}
+
+model Delivery {
+  createdAt       DateTime  @default(now())
+  deliveryDate    DateTime?
+  deliveryMonth   String?
+  id              String    @id @default(cuid())
+  paymentDate     DateTime?
+  paymentReceived Boolean?
+  paymentTime     DateTime?
+  thankYouMessage String?
+  updatedAt       DateTime  @updatedAt
+}
+
+model Receiver {
+  createdAt   DateTime @default(now())
+  id          String   @id @default(cuid())
+  name        String?
+  phoneNumber String?
+  updatedAt   DateTime @updatedAt
+}
+
+model DeliveryRequest {
+  approvalStatus         Boolean?
+  createdAt              DateTime  @default(now())
+  id                     String    @id @default(cuid())
+  requesterName          String?
+  successfulDeliveryTime DateTime?
+  updatedAt              DateTime  @updatedAt
+}
